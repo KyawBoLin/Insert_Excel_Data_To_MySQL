@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Show Page</title>
+
+<style>
+	img{
+		width:200px;
+		height:200px;
+	}
+	tr,td{
+		padding:20px;
+	}
+</style>
+</head>
+<body>
+	<p th:text="${message}"/>
+	<h4>Team Structure Data</h4>
+	<table>
+		<tr>
+			<td>ID</td>
+			<td>Name</td>
+			<td>Position</td>
+			<td>Project</td>
+			<td>Staff ID</td>
+			<td>Team</td>
+		</tr>
+		<tr th:each="team : ${teamList}">
+			<td th:text = "${team.id}" />
+			<td th:text="${team.name}" />
+			<td th:text="${team.position}" />
+			<td th:text="${team.project}" />
+			<td th:text="${team.staffId}" />
+			<td th:text="${team.team}" />
+		</tr>
+	</table>
+	<a th:href="@{/add}">Upload Team</a>
+	<hr>
+	<h4>User Photo</h4>
+	<table>
+		<tr>
+			<td>ID</td>
+			<td>Name</td>
+			<td>Image</td>
+			<td>Action</td>
+		</tr>
+		<tr th:each="photo : ${userPhotoList}">
+			<td th:text = "${photo.id}" />
+			<td th:text="${photo.name}" />
+			<td>
+				<img th:src="@{${photo.photosImagePath}}" />
+			</td>
+			<td>
+				<a th:href="@{/delete(id=${photo.id})}" class="btn btn-danger">Delete</a>
+			</td>
+		</tr>
+	</table>
+	<a th:href="@{/addPhoto}">Upload Photo</a>
+</body>
+</html>
